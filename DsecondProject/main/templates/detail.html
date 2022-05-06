@@ -1,0 +1,17 @@
+
+{%load static%}
+<head>
+    <title>레시피 페이지</title>
+    <link rel="stylesheet" href="{%static 'css/style2.css'%}">
+</head>
+<body>
+    <h1 class="title">{{recipe.title}}</h1>
+    <div class="ingredients">
+        재료: 
+        {%for ingredient in recipe.ingredients.all%}
+        <span>{{ingredient.name}}</span>
+        {%endfor%}
+    </div>
+    <div class="upload_time">{{recipe.upload_time}}</div>
+    <div class="content">{{recipe.content}}</div>
+</body>
