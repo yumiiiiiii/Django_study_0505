@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+    <head>
+        <link rel = "stylesheet" href="{% static 'list.css' %}">
+
+    </head>
+    <body>
+        <div class="content">
+            <h1>무슨 드라마를 보았나요?</h1>
+            <h2>로맨스</h2>
+            <ul>
+                {% for post2 in posts2 %}
+                    <li><a href="{% url 'detail2' pk=post2.id %}">{{ post2.title }}</a>
+                        <span>{{  post2.author }}</span>
+                        <span>{{  post2.upload_time }}</span></li>
+                {% endfor %}
+            </ul>
+            <h2>추리</h2>
+            <ul>
+                {% for M_post2 in M_posts2 %}
+                    <li><a href="{% url 'M_detail2' pk=M_post2.id %}">{{ M_post2.title }}</a>
+                        <span>{{  M_post2.author }}</span>
+                        <span>{{  M_post2.upload_time }}</span></li>
+                {% endfor %}
+            </ul>
+            <h2>재난</h2>
+            <ul>
+                {% for D_post2 in D_posts2 %}
+                    <li><a href="{% url 'D_detail2' pk=D_post2.id %}">{{ D_post2.title }}</a>
+                        <span>{{  D_post2.author }}</span>
+                        <span>{{  D_post2.upload_time }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+
+</html>
