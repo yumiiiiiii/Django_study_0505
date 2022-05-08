@@ -1,0 +1,49 @@
+<style> 
+@font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+          }
+          *{
+            font-family : 'LeeSeoyun'
+          }
+div{
+    line-height: 200%;
+}
+h1{
+    font-style: bold;
+    font-size: 20px;
+    border: 1px solid lightslategray ;
+    border-radius: 30px;
+    padding:5px;
+    width:10px;
+    padding-right:10%;
+}
+span{
+    font-style: normal;
+    font-size: 17px;
+}
+
+
+</style>
+<body>
+    <div>
+        <h1>title</h1> 
+        <span>{{ post.title }}</span>
+        <br>
+        <h1> upload_time</h1> 
+        <span> {{ post.upload_time }}</span>
+        <br>
+        <h1> estimated_time</h1>
+        <span> {{post.minutes}} </span>
+        <br>
+        <h1> id </h1>
+        <span> {{post.id}} </span>
+        <h1> country </h1>
+        <span> {{post.country}} </span>
+        <h1> content </h1>
+        <span> {{post.content}} </span>
+    
+    </div>
+</body>
