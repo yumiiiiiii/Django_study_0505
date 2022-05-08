@@ -1,0 +1,15 @@
+{% load static %}
+<html>
+    <head>
+        <link rel = "stylesheet" href="{% static 'detail.css' %}">
+
+    </head>
+    <body>
+        <div>
+            <h1>{{  M_post.title  }}</h1>
+            <span>작가 : {{ M_post.author }}</span>
+            <span>{{ M_post.upload_time }}</span>
+            <div class="content">{{ M_post.content }}</div>
+        </div>
+    </body>
+</html>
