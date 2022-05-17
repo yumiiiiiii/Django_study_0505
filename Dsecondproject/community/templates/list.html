@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale1.0">   
+    <title> Document </title>
+    <style>
+        @font-face {
+            font-family: 'LeeSeoyun';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+          }
+          *{
+            font-family : 'LeeSeoyun'
+          }
+          body{
+            min-width: fit-content;
+            text-align : center ;
+          }
+        
+          h1{
+            font-size: 38px;
+            font-weight: bold;
+            font-style: normal;
+          }
+        
+          .content {
+            width: 800px;
+            padding: 10px;
+            margin: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid lightblue;
+          }
+          
+          li span{
+              border: 0.5px solid lightseagreen;
+              border-radius: 15px;
+              padding: 10px;
+              margin-left: 10px;
+              margin-right: 10px;
+              margin-top: 30px;
+              line-height: 300%;
+          }
+    </style>
+</head>
+<body>
+    <div class = "content">
+        
+        <h1> 자취생 간단요리 </h1>
+        <ul>
+            {% for post in posts %}
+               <li>
+                   <span> title </span>
+                   <span>upload time</span>
+                   <span> estimated time </span>
+                   <span> country </span>
+
+               </li>
+               <li><a href = "{% url 'detail' pk=post.id %}">{{post.title}}</a>
+                   <span>{{post.upload_time}}</span>
+                   <span>{{post.minutes}} </span>
+                   <span>{{post.coussssntry}}</span></li>
+            {% endfor %}
+        
+        </ul>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+
+
+
