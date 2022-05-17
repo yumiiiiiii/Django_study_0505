@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+        <ul>
+            {% for recipe in object_list %}
+            <li class="post"><a class="post-1" href="{%url 'detail' pk=recipe.id %}">{{recipe.title}}</a>
+            <span class="upload_time">{{recipe.upload_time}}</span></li>
+            {% endfor %}
+        </ul>
+</body>
+</html>
