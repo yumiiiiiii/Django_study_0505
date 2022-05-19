@@ -68,5 +68,8 @@ urlpatterns = [
     path('D_edit2/<int:pk>',drama.views.D_edit2,name='D_edit2'),
     path('D_update2/<int:pk>',drama.views.D_update2,name='D_update2'),
 
+    path('<int:pk>/comment', book.views.add_comment,name="add_comment"),
+    path('<int:R_post_id>/comment/<int:comment_id>/delete/',book.views.delete_comment,name="delete_comment"),
+
 
 ]

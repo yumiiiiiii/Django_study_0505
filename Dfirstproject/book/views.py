@@ -1,8 +1,10 @@
+from urllib import request
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from .forms import RomanceForm, CommentForm
 
 # Create your views here.
-from book.models import Romance, Mystery, Disaster
+from book.models import Romance, Mystery, Disaster,Comment,HashTag
 
 def List(request):
     R_posts=Romance.objects.filter(upload_time__lte=timezone.now()).order_by('upload_time')
@@ -26,7 +28,8 @@ def R_update(request, pk):
 
 def R_detail(request, pk):
     R_post=get_object_or_404(Romance,pk=pk)
-    return render(request,'R_detail.html',{'R_post':R_post})
+    R_hashtag=R_post.hashtag.all()
+    return render(request,'R_detail.html',{'R_post':R_post,'hashtags':R_hashtag})
 
 def R_new(request):
     R_post=Romance()
@@ -39,6 +42,13 @@ def R_create(request):
     R_post.upload_time=timezone.now()
     R_post.content=request.POST['content']
     R_post.save()
+    hashtags=request.POST['hashtags']
+    hashtag=hashtags.split(", ")
+    for tag in hashtag:
+        new_hashtag=HashTag()
+        new_hashtag.hashtag=tag
+        new_hashtag.save()
+        R_post.hashtag.add(new_hashtag)
     return redirect('list')
 
 def R_delete(request, pk):
@@ -117,3 +127,25 @@ def D_delete(request, pk):
     D_delete=get_object_or_404(Disaster,pk=pk)
     D_delete.delete()
     return redirect('list')
+
+def add_comment(request, pk):
+    romance=get_object_or_404(Romance, pk=pk)
+
+    if request.method=='POST':
+        form=CommentForm(request.POST)
+
+        if form.is_valid():
+            comment=form.save(commit=False)
+            comment.post=romance
+            comment.save()
+            return redirect('R_detail', pk)
+    else:
+        form=CommentForm()
+    
+    return render(request, 'add_comment.html', {'form':form, 'form':form})
+
+def delete_comment(request,R_post_id, comment_id):
+    comment=get_object_or_404(Comment, pk=comment_id)
+    comment.delete()
+
+    return redirect('R_detail',R_post_id)
