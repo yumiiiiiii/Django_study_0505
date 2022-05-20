@@ -1,5 +1,5 @@
 from django import forms
-from .models import Recipe, Ingredient
+from .models import Recipe, Ingredient, Comment
 
 class CustomIngrdntForm(forms.ModelMultipleChoiceField):
     def label_from_instance(self, Ingredient):
@@ -8,14 +8,15 @@ class CustomIngrdntForm(forms.ModelMultipleChoiceField):
 class Form(forms.ModelForm):
     class Meta:
         model = Recipe
-        
         fields = [
             'title',
-            'upload_time',
-            'ingredients',
             'content'
         ]
 
-    title = forms.CharField()
-    upload_time = forms.DateInput()
     ingredients = CustomIngrdntForm(queryset=Ingredient.objects.all(), widget=forms.CheckboxSelectMultiple)
+
+class commentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        #fields = "__all__"
+        exclude = ('recipe',)
