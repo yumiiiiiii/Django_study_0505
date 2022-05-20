@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main.views import List, Detail, create, delete, update, SearchResultsView
+from main.views import List, Detail, create, delete, update, SearchResultsView, comment_create, comment_delete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,6 @@ urlpatterns = [
     path('delete/<int:pk>', delete, name="delete"),
     path('update/<int:pk>', update, name="update"),
     path('search/', SearchResultsView.as_view(), name="search"),
+    path('<int:pk>/comment', comment_create, name="comment_create"),
+    path('<int:recipe_pk>/create/<int:comment_pk>', comment_delete, name="comment_delete"),
 ]
