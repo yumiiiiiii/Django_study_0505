@@ -6,13 +6,17 @@ class CustomIngrdntForm(forms.ModelMultipleChoiceField):
         return "%s" %Ingredient.name
 
 class Form(forms.ModelForm):
+    
     class Meta:
         model = Recipe
         fields = [
             'title',
-            'content'
+            'content',
+            'ingredients',
+            #'hashtags',
+            'photo',
         ]
-
+    #hashtags = forms.CharField(label="해시태그", max_length=200, widget=forms.TextInput(attrs={'size':'40'}))
     ingredients = CustomIngrdntForm(queryset=Ingredient.objects.all(), widget=forms.CheckboxSelectMultiple)
 
 class commentForm(forms.ModelForm):

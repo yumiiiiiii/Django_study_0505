@@ -21,6 +21,7 @@ class Recipe(models.Model):
     content = models.TextField('Content')
     ingredients = models.ManyToManyField(Ingredient, related_name='recipes')
     hashtags = models.ManyToManyField(HashTag)
+    photo = models.ImageField(blank=True, null=True, upload_to="blog_photo")
     
     def __str__(self):
         return self.title

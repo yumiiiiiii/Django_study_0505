@@ -22,7 +22,7 @@ def Detail(request, pk):
 
 def create(request):
     if request.method == 'POST': # method가 post일때
-        form = Form(request.POST) # form 에 ReviewForm 할당
+        form = Form(request.POST, request.FILES) # form 에 ReviewForm 할당
         if form.is_valid(): # form 유효성 검증
             new_recipe = form.save(commit=False)
             new_recipe.save() # 저장
@@ -44,6 +44,7 @@ def delete(request, pk):
 
 def update(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
+    recipe.hashtags.clear()
     if request.method == 'POST':
         form = Form(request.POST, instance=recipe)
         if form.is_valid():
