@@ -1,21 +1,44 @@
 {% load static %}
 <html>
     <head>
-        <link rel = "stylesheet" href="{% static 'detail.css' %}">
+        <link rel = "stylesheet" href="{% static 'css/detail.css' %}">
         <a style="font-size: 30px;">로맨스</a>
     </head>
     <body>
         <div>
             <h1>{{  R_post2.title  }}</h1>
+            <div><span>
+                {% for hashtag in R_hashtags2.all %}
+                #{{hashtag}}
+                {% endfor %}
+            </span>
+            </div>
             <span>{{ R_post2.author }}</span>
             <span>{{ R_post2.upload_time }}</span>
             <div class="content">{{ R_post2.content }}</div>
+            {% if R_post2.photo %}
+            <span><img src="{{ R_post2.photo.url }}" alt="" height="200px;"></span>
+            {% endif %}
             <br>
             <a href="{% url 'R_edit2' R_post2.id %}">▶수정하기</a>
             <br>
             <a href="{% url 'R_delete2' R_post2.id %}">▶삭제하기</a>
             <br>
             <a href="{% url 'list2' %}">▶홈으로 돌아가기</a>
+
+            <br>
+            <hr>
+            <p><a class="add_comment" href="{% url 'R_add_comment2' R_post2.id %}">▶댓글달기</a></p>
+            {% for comment in R_post2.comments.all %}
+                <div class="comment">
+                    <strong class="username">{{ comment.username }}</strong>
+                    <div class="date">{{ comment.created_at }}</div>
+                    <p>{{ comment.comment_text|linebreaks }}</p>
+                    <p><a href="{% url 'R_delete_comment2' R_post2_id=R_post2.id comment_id=comment.id %}">▶댓글 삭제</a></p>
+                </div>
+            {% empty %}
+            <p>No comment</p>
+            {% endfor %}
         </div>
     </body>
 </html>
