@@ -1,7 +1,7 @@
 {% load static %}
 <html>
     <head>
-        <link rel = "stylesheet" href="{% static 'detail.css' %}">
+        <link rel = "stylesheet" href="{% static 'css/detail.css' %}">
         <a style="font-size: 30px;">로맨스</a>
     </head>
     <body>
@@ -16,6 +16,9 @@
             <span>{{ R_post.author }}</span>
             <span>{{ R_post.upload_time }}</span>
             <div class="content">{{ R_post.content }}</div>
+            {% if R_post.photo %}
+            <span><img src="{{ R_post.photo.url }}" alt="" height="200px;"></span>
+            {% endif %}
             <br>
             <a href="{% url 'R_edit' R_post.id %}">▶수정하기</a>
             <br>
