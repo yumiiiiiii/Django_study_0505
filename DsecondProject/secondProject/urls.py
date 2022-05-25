@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from main.views import List, Detail, create, delete, update, SearchResultsView, comment_create, comment_delete
 
+from django.conf import settings
+from django.conf.urls.static import static 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', List, name="main"),
@@ -27,4 +30,4 @@ urlpatterns = [
     path('search/', SearchResultsView.as_view(), name="search"),
     path('<int:pk>/comment', comment_create, name="comment_create"),
     path('<int:recipe_pk>/create/<int:comment_pk>', comment_delete, name="comment_delete"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
