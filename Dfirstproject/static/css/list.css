@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 40pt;
+    color: #A8D400;
+}
+
+ul {
+    list-style: none;
+    padding-left: 17px;
+}
