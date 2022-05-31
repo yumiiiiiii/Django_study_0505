@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>edit</title>
+{% endblock %}
+
+{% block content %}
+<h1>Post Edit</h1>
+<form action="{% url 'update' post.id %}", method="POST">
+    {% csrf_token %}
+    <p>제목: <input type="text" name="title" value="{{ post.title }}"></p>
+    본문: <textarea name="content" id="">{{ post.content }}</textarea>
+    <button type="submit">제출</button>
+
+</form>
+{% endblock %}

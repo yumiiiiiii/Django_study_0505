@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>detail</title>
+{% endblock %}
+
+{% block content %}
+        <br>
+        <h1>{{ post.title }}</h1>
+        {{ post.upload_time }}
+        <br>
+        {% if post.photo %}
+        <img src="{{ post.photo.url }}" alt="" height="200px;">
+        {% endif %}
+        <br>
+        {{ post.content }}
+        <br>
+        <br>
+        <div>
+            {% for hashtag in hashtags.all %}
+            #{{hashtag}}
+            {% endfor %}
+        </div>
+        <br>
+        <a href="{% url 'list' %}">리스트로 돌아가기</a>
+        <a href="{% url 'edit' post.id %}">수정하기</a>
+        <a href="{% url 'delete' post.id %}">삭제하기</a>
+        <br>
+        <br>
+        <hr>
+        <a class="add_comment" href="{% url 'add_comment' post.id %}">댓글 달기</a>
+        {% for comment in post.comments.all %}
+            <div class="comment">
+                <strong class="username">{{ comment.username }}</strong>
+                <div class="upload_time">{{ comment.created_at }}</div>
+                <p>{{ comment.comment_text|linebreaks }}</p>
+                <form action="{% url 'delete_comment' post.id comment.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="[x]">
+                </form>
+            </div>
+        {% empty %}
+        <p>아직 댓글이 없어요 :(</p>
+        {% endfor %}
+{% endblock %}
