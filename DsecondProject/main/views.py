@@ -2,8 +2,7 @@ from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.db.models import Q
-
-from .models import Comment, Ingredient, HashTag
+from .models import Comment, HashTag
 
 # Create your views here.
 
