@@ -31,3 +31,4 @@ class D_CommentForm(forms.ModelForm):
     class Meta:
         model=D_Comment
         fields=['username','comment_text']
+

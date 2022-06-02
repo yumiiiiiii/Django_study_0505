@@ -24,6 +24,7 @@ def R_edit(request, pk):
 def R_update(request, pk):
     R_update = get_object_or_404(Romance,pk=pk)
     R_update.title=request.POST['title']
+    R_update.author=request.POST['author']
     R_update.content=request.POST['content']
     R_update.save()
     return redirect('list')
@@ -88,6 +89,7 @@ def M_edit(request, pk):
 def M_update(request, pk):
     M_update = get_object_or_404(Mystery,pk=pk)
     M_update.title=request.POST['title']
+    M_update.author=request.POST['author']
     M_update.content=request.POST['content']
     M_update.save()
     return redirect('list')
@@ -152,6 +154,7 @@ def D_edit(request, pk):
 def D_update(request, pk):
     D_update = get_object_or_404(Disaster,pk=pk)
     D_update.title=request.POST['title']
+    D_update.author=request.POST['author']
     D_update.content=request.POST['content']
     D_update.save()
     return redirect('list')
