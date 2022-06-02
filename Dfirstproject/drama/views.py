@@ -5,6 +5,8 @@ from django.utils import timezone
 from drama.models import *
 from .forms import *
 
+
+
 def List2(request):
     R_posts2=Romance.objects.filter(upload_time__lte=timezone.now()).order_by('upload_time')
     M_posts2=Mystery.objects.filter(upload_time__lte=timezone.now()).order_by('upload_time')
@@ -22,6 +24,7 @@ def R_edit2(request, pk):
 def R_update2(request, pk):
     R_update2= get_object_or_404(Romance,pk=pk)
     R_update2.title=request.POST['title']
+    R_update2.author=request.POST['author']
     R_update2.content=request.POST['content']
     R_update2.save()
     return redirect('list2')
@@ -86,6 +89,7 @@ def M_edit2(request, pk):
 def M_update2(request, pk):
     M_update2 = get_object_or_404(Mystery,pk=pk)
     M_update2.title=request.POST['title']
+    M_update2.author=request.POST['author']
     M_update2.content=request.POST['content']
     M_update2.save()
     return redirect('list2')
@@ -148,6 +152,7 @@ def D_edit2(request, pk):
 def D_update2(request, pk):
     D_update2 = get_object_or_404(Disaster,pk=pk)
     D_update2.title=request.POST['title']
+    D_update2.author=request.POST['author']
     D_update2.content=request.POST['content']
     D_update2.save()
     return redirect('list2')

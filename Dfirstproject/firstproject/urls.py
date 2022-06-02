@@ -20,6 +20,7 @@ from book.views import List, M_detail, D_detail, R_detail
 from drama.views import List2, M_detail2, D_detail2, R_detail2
 import book.views
 import drama.views
+import account.views
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -83,5 +84,8 @@ urlpatterns = [
     path('<int:pk>/D_comment2', drama.views.D_add_comment2,name="D_add_comment2"),
     path('<int:D_post2_id>/D_comment2/<int:comment_id>/delete/',drama.views.D_delete_comment2,name="D_delete_comment2"),
     
+    path('account/login',account.views.login_view, name="login"),
+    path('account/logout',account.views.logout_view, name="logout"),
+    path('account/signup',account.views.signup_view, name="signup"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

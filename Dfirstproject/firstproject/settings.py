@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'book.apps.BookConfig',
     'drama.apps.DramaConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,9 @@ STATIC_ROOT=os.path.join('staticfiles')
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+AUTH_USER_MODEL = 'account.CustomUser'
+#account에 새로운 모델을 등록했음!
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
